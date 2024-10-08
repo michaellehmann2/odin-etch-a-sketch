@@ -1,9 +1,18 @@
 .container {
-    display: flex;
+    border: 2px solid black;
+    padding: 5px;
     height: 600px;
     width: 600px;
+    display: flex;
+}
+
+.square-col {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .square {
     border: 1px solid black;
+    flex: 1 1 auto;
 }
