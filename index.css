@@ -1,3 +1,7 @@
+.header {
+    display: flex;
+}
+
 .container {
     border: 2px solid black;
     height: 600px;
