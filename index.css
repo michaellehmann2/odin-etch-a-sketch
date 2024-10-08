@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    height: 600px;
+    width: 600px;
+}
+
+.square {
+    border: 1px solid black;
+}
