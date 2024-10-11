@@ -4,6 +4,7 @@ let currentSiteMode = "original";
 const container = document.querySelector(".container");
 
 function drawSquareGrid() {
+    console.log(`Drawing new site in mode: ${currentSiteMode}`);
     for (let i = 0; i < currentSideLength; i++) {
         const col = document.createElement("div");
         col.classList.toggle("square-col");
@@ -13,6 +14,21 @@ function drawSquareGrid() {
             if (currentSiteMode == "original") {
                 square.addEventListener("mouseover", () => {
                     square.setAttribute("style", `background: ${currentCursorColor}`);
+                })
+            }
+            else if (currentSiteMode == "random-colors") {
+
+            }
+            else if (currentSiteMode == "darken") {
+                square.setAttribute("style", `background: rgba(0,0,0,0)`);
+                square.addEventListener("mouseover", () => {
+                    let styleString = square.getAttribute("style");
+                    oldAlpha = styleString.slice(23);
+                    oldAlpha = oldAlpha.slice(0, -1);
+                    if (oldAlpha < 1) {
+                        newAlpha = parseFloat(oldAlpha) + 0.1;
+                        square.setAttribute("style", `background: rgba(0,0,0,${newAlpha})`);
+                    }
                 })
             }
             col.appendChild(square);
@@ -44,6 +60,15 @@ function changeNumSquares() {
     drawSquareGrid();
 }
 
+function changeMode() {
+    let newSiteMode = document.querySelector('input[name="site-mode"]:checked').value;
+
+    if (newSiteMode != currentSiteMode) {
+        currentSiteMode = newSiteMode;
+        clearAndRedraw();
+    }
+}
+
 drawSquareGrid(currentSideLength);
 
 const clearButton = document.querySelector(".clear-button");
@@ -51,3 +76,12 @@ clearButton.addEventListener("click", clearAndRedraw);
 
 const changeNumButton = document.querySelector(".change-num-button");
 changeNumButton.addEventListener("click", changeNumSquares);
+
+const originalMode = document.querySelector("#original");
+originalMode.addEventListener("click", changeMode);
+
+const randomColorsMode = document.querySelector("#random-colors");
+randomColorsMode.addEventListener("click", changeMode);
+
+const darkenMode = document.querySelector("#darken");
+darkenMode.addEventListener("click", changeMode);
