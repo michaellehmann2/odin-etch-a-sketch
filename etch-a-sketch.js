@@ -8,7 +8,6 @@ function getRandomInt(max) {
 }
 
 function drawSquareGrid() {
-    console.log(`Drawing new site in mode: ${currentSiteMode}`);
     for (let i = 0; i < currentSideLength; i++) {
         const col = document.createElement("div");
         col.classList.toggle("square-col");
