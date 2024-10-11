@@ -1,5 +1,6 @@
 let currentSideLength = 16;
 let currentCursorColor = "grey";
+let currentSiteMode = "original";
 const container = document.querySelector(".container");
 
 function drawSquareGrid() {
@@ -9,9 +10,11 @@ function drawSquareGrid() {
         for (let j = 0; j < currentSideLength; j++) {
             const square = document.createElement("div");
             square.classList.toggle("square");
-            square.addEventListener("mouseover", () => {
-                square.setAttribute("style", `background: ${currentCursorColor}`);
-            })
+            if (currentSiteMode == "original") {
+                square.addEventListener("mouseover", () => {
+                    square.setAttribute("style", `background: ${currentCursorColor}`);
+                })
+            }
             col.appendChild(square);
         }
         container.appendChild(col);
