@@ -3,6 +3,10 @@ let currentCursorColor = "grey";
 let currentSiteMode = "original";
 const container = document.querySelector(".container");
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
 function drawSquareGrid() {
     console.log(`Drawing new site in mode: ${currentSiteMode}`);
     for (let i = 0; i < currentSideLength; i++) {
@@ -17,7 +21,12 @@ function drawSquareGrid() {
                 })
             }
             else if (currentSiteMode == "random-colors") {
-
+                square.addEventListener("mouseover", () => {
+                    let newR = getRandomInt(256);
+                    let newG = getRandomInt(256);
+                    let newB = getRandomInt(256);
+                    square.setAttribute("style", `background: rgb(${newR}, ${newG}, ${newB})`);
+                })
             }
             else if (currentSiteMode == "darken") {
                 square.setAttribute("style", `background: rgba(0,0,0,0)`);
